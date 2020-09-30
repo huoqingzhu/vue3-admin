@@ -1,0 +1,34 @@
+<template>
+<div>
+  <a-table :columns="columns" :data-source="listData" :loading="loading" :rowKey="(record) => record.name" bordered>
+    <template v-slot:id="{ text: id }">
+      <a>编辑</a>|| <a>查看</a> ||<a>删除</a>
+    </template>
+  </a-table>
+</div>
+</template>
+
+<script>
+export default {
+  name: "TownTable",
+  props: {
+    columns: {
+      type: Array,
+    },
+    listData: {
+      type: Array,
+    },
+    loading: {
+      type: Boolean,
+    },
+    baseUrl: String,
+  },
+};
+</script>
+
+<style scoped>
+.mg {
+  width: 30px;
+  height: 30px;
+}
+</style>
