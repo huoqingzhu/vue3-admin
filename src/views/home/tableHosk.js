@@ -33,6 +33,9 @@ const columns = [
     align: "center",
   },
 ];
+/**
+ * 返回表格用的数据和获取数据的方法
+ */
 const table = () => {
   let obj = reactive({
     listData: [],
@@ -49,4 +52,29 @@ const table = () => {
   };
   return { obj, getDate }
 }
-export { table }
+// 返回对话框所用到的数据
+const drawer = () => {
+  let that = reactive({
+    title: "新增流媒体地址",
+    visible: false,
+    fromData: {
+      SN: "",
+      url: ""
+    }
+  })
+  const setTitle = (a) => {
+    that.title = `${a}流媒体地址`
+    that.visible = true;
+  }
+  const showDrawer = () => {
+    that.visible = true;
+  }
+  const afterVisibleChange = (val) => {
+    console.log("visible", val);
+  }
+  const getFrom = () => {
+    console.log(that.fromData)
+  }
+  return { that, setTitle, showDrawer, afterVisibleChange, getFrom }
+}
+export { table, drawer }

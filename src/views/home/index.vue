@@ -1,25 +1,31 @@
 <template>
 <div>
   <a-card>
-    <a-button type="primary" @click="showDrawer">+新增摄像头</a-button>
+    <a-button type="primary" @click="setTitle('新增')">+新增摄像头</a-button>
   </a-card>
-  <Table :columns="columns" :listData="listData" :name="name" :loading="loading" :baseUrl="baseUrl">
-  </Table>
-  <a-drawer title="Basic Drawer" placement="right" :closable="false" width="420" v-model:visible="visible" :after-visible-change="afterVisibleChange">
+
+  <a-table :columns="columns" :data-source="listData" :loading="loading" :rowKey="(record) => record.name" bordered>
+    <template v-slot:id="{ text: id }">
+      <a @click="setTitle('编辑')">编辑</a>|| <a>查看</a> ||<a>删除</a>
+    </template>
+  </a-table>
+  <a-drawer :title="title" placement="right" :closable="false" width="420" v-model:visible="visible" :after-visible-change="afterVisibleChange">
     <div class="table">
       <p>SN:</p>
-      <a-input style="width: 250px"></a-input>
+      <a-input v-model:value="fromData.SN" style="width: 250px"></a-input>
     </div>
     <div class="table">
       <p>地址:</p>
-      <a-input style="width: 250px"> </a-input>
+      <a-input v-model:value="fromData.url" style="width: 250px"> </a-input>
+    </div>
+    <div>
+      <a-button type="primary" @click="getFrom">提交</a-button>
     </div>
   </a-drawer>
 </div>
 </template>
 
 <script>
-import Table from "./Table.vue";
 import {
   search
 } from "@/api/article.js";
@@ -29,34 +35,35 @@ import {
 } from "vue";
 // 引入tableHosk
 import {
-  table
+  table,
+  drawer
 } from "./tableHosk.js";
 export default {
-  components: {
-    Table,
-  },
+  name: "首页",
+
   data() {
-    return {
-      visible: false,
-    };
+    return {};
   },
-  methods: {
-    afterVisibleChange(val) {
-      console.log("visible", val);
-    },
-    showDrawer() {
-      this.visible = true;
-    },
-  },
+  methods: {},
   setup() {
     const {
       obj,
       getDate
     } = table();
+    const {
+      that,
+      setTitle,
+      afterVisibleChange,
+      getFrom
+    } = drawer();
     // 请求数据
     getDate();
     return {
       ...toRefs(obj),
+      ...toRefs(that),
+      setTitle,
+      afterVisibleChange,
+      getFrom,
     };
   },
 };
