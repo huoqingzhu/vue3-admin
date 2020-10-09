@@ -27,10 +27,11 @@
   </a-drawer>
   <!--视频对话框-->
   <a-modal v-model:visible="visibleModel" ok-text="确认" cancel-text="取消" title="视频播放" @ok="handleOk" width="600px">
-    <video width="550" height="340" controls autoplay>
+    <!-- <video width="550" height="340" controls autoplay>
       <source :src="src" type="video/mp4" />
       您的浏览器不支持 video 标签。
-    </video>
+    </video> -->
+    <iframe :src="src" style="width: 550px; height: 340px" />
   </a-modal>
 </div>
 </template>
