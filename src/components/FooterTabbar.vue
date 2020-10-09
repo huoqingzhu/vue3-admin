@@ -1,8 +1,10 @@
 <template>
-  <div class="food">苏ICP备19075218号 XXXXX</div>
+<div class="food"></div>
 </template>
+
 <script>
 </script>
+
 <style lang="scss" scoped>
 .food {
   background-color: #fff;
