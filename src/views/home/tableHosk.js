@@ -126,8 +126,8 @@ const model = () => {
     visibleModel: false,
     src: ""
   })
-  const showModel = (url) => {
-    data.src = `${window.location.host}/${url}`
+  const showModel = (SN) => {
+    data.src = `${window.location.host}:8085/player/${SN}`
     console.log(data.src)
     data.visibleModel = true;
   }

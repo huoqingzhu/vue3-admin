@@ -7,7 +7,7 @@
   <a-table :columns="columns" :data-source="listData" :loading="loading" :rowKey="(record) => record.name" bordered>
     <template v-slot:id="{ text: id }">
       <a @click="setTitle(false, id)">编辑</a>||
-      <a @click="showModel(id.url)">查看</a>||
+      <a @click="showModel(id.SN)">查看</a>||
       <a @click="remove(id.id)">删除</a>
     </template>
   </a-table>
