@@ -5,7 +5,7 @@
     <div>流媒体服务器</div>
   </div>
   <meau></meau>
-  <div class="center" @click="userChange">
+  <div class="center">
     <UserSwitchOutlined :style="{ fontSize: '30px', color: '#08c' }" />
   </div>
 </div>
