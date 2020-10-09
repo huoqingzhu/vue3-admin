@@ -46,8 +46,8 @@ const table = () => {
   // 获取数据
   const getDate = async () => {
     obj.loading = true;
-    // const data = await camera();
-    const data = [{ SN: 90, url: "123", id: 3 }]
+    const data = await camera();
+    // const data = [{ SN: 90, url: "123", id: 3 }]
     obj.listData = data
     obj.loading = false;
   };
