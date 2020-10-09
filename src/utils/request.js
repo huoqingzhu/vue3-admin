@@ -17,7 +17,6 @@ const service = axios.create({
   baseURL,
   timeout: 5000 // request timeout
 });
-console.log(baseURL)
 // 发起请求之前的拦截器
 service.interceptors.request.use(
   config => {

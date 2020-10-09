@@ -6,7 +6,8 @@ import {
   Card,
   Popover,
   Table,
-  Drawer
+  Drawer,
+  Modal
 } from "ant-design-vue";
 const ant = {
   install(Vue) {
@@ -17,6 +18,7 @@ const ant = {
     Vue.component(Table.name, Table);
     Vue.component(Spin.name, Spin);
     Vue.component(Drawer.name, Drawer);
+    Vue.component(Modal.name, Modal);
     Vue.use(Menu);
   },
 };

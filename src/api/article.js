@@ -15,4 +15,12 @@ export function search(url = "/face/search ", data = null, method = "get", param
     method,
   });
 }
-
+// 摄像头增删该查
+export function camera(url = "/camera/search ", data = null, method = "get", params = null,) {
+  return request({
+    url,
+    data,
+    method,
+    params,
+  });
+}

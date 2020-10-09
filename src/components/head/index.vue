@@ -47,7 +47,7 @@ export default {
 
 .ft {
   width: 20%;
-  min-width: 80px;
+  min-width: 280px;
   font-size: 20px;
 }
 </style>
