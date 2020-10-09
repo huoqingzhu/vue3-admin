@@ -45,7 +45,6 @@ import {
 } from "vue";
 // 引入tableHosk
 import {
-  table,
   drawer,
   model
 } from "./tableHosk.js";
@@ -57,18 +56,14 @@ export default {
   },
   methods: {},
   setup() {
-    // 获取列表
-    const {
-      obj,
-      getDate
-    } = table();
     // 抽屉逻辑代码
     const {
       that,
       setTitle,
       afterVisibleChange,
       getFrom,
-      remove
+      remove,
+      getDate,
     } = drawer();
     const {
       data,
@@ -80,10 +75,10 @@ export default {
     // 视频弹窗
 
     return {
-      ...toRefs(obj),
       ...toRefs(that),
       ...toRefs(data),
       setTitle,
+      getDate,
       afterVisibleChange,
       getFrom,
       remove,

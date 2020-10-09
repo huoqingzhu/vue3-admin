@@ -13,6 +13,7 @@ if (getQueryString("ip") == 1) {
 } else {
   baseURL = "/api/";
 }
+// import { message } from 'ant-design-vue'
 const service = axios.create({
   baseURL,
   timeout: 5000 // request timeout
@@ -35,9 +36,14 @@ service.interceptors.response.use(
     const res = response.data;
 
     if (response.status !== 200) {
-      return Promise.reject(new Error(res.message || "Error"));
+      return Promise.reject("服务器错误");
     } else {
-      return res;
+      if (res.err === 1) {
+
+        return Promise.reject(res.msg || "服务器错误");
+      } else {
+        return res
+      }
     }
   },
   error => {

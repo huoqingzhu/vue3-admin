@@ -34,26 +34,6 @@ const columns = [
   },
 ];
 /**
- * 返回表格用的数据和获取数据的方法
- */
-const table = () => {
-  let obj = reactive({
-    listData: [],
-    columns,
-    loading: false,
-
-  });
-  // 获取数据
-  const getDate = async () => {
-    obj.loading = true;
-    const data = await camera();
-    // const data = [{ SN: 90, url: "123", id: 3 }]
-    obj.listData = data
-    obj.loading = false;
-  };
-  return { obj, getDate }
-}
-/**
  * 抽屉逻辑代码
  */
 const drawer = () => {
@@ -64,11 +44,24 @@ const drawer = () => {
       SN: "",
       url: ""
     },
-
+    listData: [],
+    columns,
+    loading: false,
   })
+  // 获取数据
+  const getDate = () => {
+    that.loading = true;
+    camera().then(res => {
+      that.listData = res.list
+      that.loading = false;
+    })
+      .catch(err => {
+        that.loading = false;
+      })
+
+  };
   // a为true代表新增 a为false代表编辑
   const setTitle = (a, b) => {
-
     if (a) {
       that.title = "新增流媒体地址"
       that.fromData = {
@@ -92,18 +85,22 @@ const drawer = () => {
   // 新增 编辑摄像头
   const getFrom = () => {
     if (that.title === "新增流媒体地址") {
-      camera("/camera/insert", that.fromData, "post").then(res => {
-        message.success("新增成功")
+      camera("/camera/insert", JSON.stringify(that.fromData), "post").then(res => {
+        message.success(res.msg)
+        getDate()
+        that.visible = false;
       })
         .catch(err => {
-          message.error("服务器错误")
+          message.error(err)
         })
     } else {
-      camera("/camera/update", that.fromData, "post").then(res => {
-        message.success("修改成功")
+      camera("/camera/update", JSON.stringify(that.fromData), "post").then(res => {
+        message.success(res.msg)
+        getDate()
+        that.visible = false;
       })
         .catch(err => {
-          message.error("服务器错误")
+          message.error(err)
         })
     }
   }
@@ -111,13 +108,15 @@ const drawer = () => {
   const remove = (id) => {
     camera("/camera/delete", { id: id }, "post",).then(res => {
       message.success("删除成功")
+      getDate()
+
     })
       .catch(err => {
         message.error("服务器错误")
       })
   }
 
-  return { that, setTitle, showDrawer, afterVisibleChange, getFrom, remove }
+  return { that, getDate, setTitle, showDrawer, afterVisibleChange, getFrom, remove }
 }
 /**
  * 视频对话框
@@ -137,4 +136,4 @@ const model = () => {
   }
   return { data, showModel, handleOk }
 }
-export { table, drawer, model }
+export { drawer, model }
