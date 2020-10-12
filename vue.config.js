@@ -1,6 +1,7 @@
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const path = require("path");
+const port = process.env.port || process.env.npm_config_port || 8890;
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -24,8 +25,8 @@ module.exports = {
   indexPath: "index.html",
   productionSourceMap: false, // 关闭sourceMap
   devServer: {
-    host: 'localhost',//target host
-    port: 8890,
+
+    port,
     open: true,
     //proxy:{'/api':{}},代理器中设置/api,项目中请求路径为/api的替换为target
     proxy: {
