@@ -1,7 +1,9 @@
 <template>
 <div>
   <a-card>
-    <a-button type="primary" @click="setTitle(true, {})">+新增摄像头</a-button>
+    <!--  <a-button type="primary" @click="setTitle(true, {})">+新增摄像头</a-button> -->
+    <a-input style="width: 250px; margin-right: 5px"></a-input>
+    <a-button type="primary" @click="getDate">搜索</a-button>
   </a-card>
 
   <a-table :columns="columns" :data-source="listData" :loading="loading" :rowKey="(record) => record.name" bordered>
@@ -12,7 +14,7 @@
     </template>
   </a-table>
   <!-- 抽屉 -->
-  <a-drawer :title="title" placement="right" :closable="false" width="420" v-model:visible="visible" :after-visible-change="afterVisibleChange">
+  <!-- <a-drawer :title="title" placement="right" :closable="false" width="420" v-model:visible="visible" :after-visible-change="afterVisibleChange">
     <div class="table">
       <p>SN:</p>
       <a-input v-model:value="fromData.SN" style="width: 250px"></a-input>
@@ -25,14 +27,10 @@
       <a-button type="primary" @click="getFrom">提交</a-button>
     </div>
   </a-drawer>
-  <!--视频对话框-->
-  <a-modal v-model:visible="visibleModel" ok-text="确认" cancel-text="取消" title="视频播放" @ok="handleOk" width="600px">
-    <!-- <video width="550" height="340" controls autoplay>
-      <source :src="src" type="video/mp4" />
-      您的浏览器不支持 video 标签。
-    </video> -->
+ 视频对话框-->
+  <!--  <a-modal v-model:visible="visibleModel" ok-text="确认" cancel-text="取消" title="视频播放" @ok="handleOk" width="600px">
     <iframe :src="src" style="width: 550px; height: 340px" />
-  </a-modal>
+  </a-modal> -->
 </div>
 </template>
 

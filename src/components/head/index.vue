@@ -2,7 +2,7 @@
 <div class="center">
   <div class="center ft hiddens">
     <img class="im" src="@/assets/logo2.png" alt />
-    <div>流媒体服务器</div>
+    <!-- <div>流媒体服务器</div> -->
   </div>
   <meau></meau>
   <div class="center">
@@ -41,13 +41,13 @@ export default {
 .im {
   height: 50px;
   margin: 0 0.1rem;
-  max-width: 120px;
+  max-width: 80px;
   max-height: 40px;
 }
 
 .ft {
-  width: 20%;
-  min-width: 280px;
+  width: 10%;
+  min-width: 100px;
   font-size: 20px;
 }
 </style>

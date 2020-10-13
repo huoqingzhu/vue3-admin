@@ -1,15 +1,18 @@
 <template>
 <div>
   <h1>ecahrts</h1>
+  <child @person="person" ref="boxs"></child>
   <cahrt ref="chart" :option="option" :style="sty"></cahrt>
 </div>
 </template>
 
 <script>
 import cahrt from "./ecahrt";
+import child from "./child.vue";
 export default {
   components: {
     cahrt,
+    child,
   },
   data() {
     return {
@@ -32,12 +35,19 @@ export default {
         height: "500px",
         width: "100%",
       },
+      boxs: null,
     };
   },
   mounted() {
+    console.log(this.$refs.boxs.a.length);
     this.$nextTick(() => {
       this.$refs.chart.init();
     });
+  },
+  methods: {
+    person() {
+      console.log("父组件调用了我");
+    },
   },
 };
 </script>
